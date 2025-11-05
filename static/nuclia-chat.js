@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let isWindowOpen = false;
     
     // Add message to chat
-    function addMessage(text, isBot = true, citations = null) {
+    function addMessage(text, isBot = true, citations = null, suggestedQuestions = null) {
         const messageDiv = document.createElement('div');
         messageDiv.style.display = 'flex';
         messageDiv.style.flexDirection = 'column';
@@ -210,6 +210,56 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             messageDiv.appendChild(citationsDiv);
+        }
+        
+        // Add suggested questions buttons if available
+        if (isBot && suggestedQuestions && suggestedQuestions.length > 0) {
+            const questionsDiv = document.createElement('div');
+            questionsDiv.style.display = 'flex';
+            questionsDiv.style.flexDirection = 'column';
+            questionsDiv.style.gap = '0.5rem';
+            questionsDiv.style.marginTop = '0.75rem';
+            questionsDiv.style.width = '100%';
+            
+            suggestedQuestions.forEach((question) => {
+                const questionBtn = document.createElement('button');
+                questionBtn.textContent = question;
+                questionBtn.style.padding = '0.75rem 1rem';
+                questionBtn.style.background = 'linear-gradient(135deg, #ff6b35 0%, #f97316 100%)';
+                questionBtn.style.color = 'white';
+                questionBtn.style.border = 'none';
+                questionBtn.style.borderRadius = '0.75rem';
+                questionBtn.style.fontSize = '0.9rem';
+                questionBtn.style.fontWeight = '500';
+                questionBtn.style.cursor = 'pointer';
+                questionBtn.style.transition = 'all 200ms';
+                questionBtn.style.textAlign = 'left';
+                questionBtn.style.boxShadow = '0 2px 8px rgba(255,107,53,0.2)';
+                
+                questionBtn.addEventListener('mouseenter', () => {
+                    questionBtn.style.transform = 'translateY(-2px)';
+                    questionBtn.style.boxShadow = '0 4px 12px rgba(255,107,53,0.3)';
+                });
+                
+                questionBtn.addEventListener('mouseleave', () => {
+                    questionBtn.style.transform = 'translateY(0)';
+                    questionBtn.style.boxShadow = '0 2px 8px rgba(255,107,53,0.2)';
+                });
+                
+                questionBtn.addEventListener('click', () => {
+                    // Send the question as user message
+                    const inputField = document.getElementById('nuclia-input');
+                    const sendButton = document.getElementById('nuclia-send');
+                    if (inputField && sendButton) {
+                        inputField.value = question;
+                        sendButton.click();
+                    }
+                });
+                
+                questionsDiv.appendChild(questionBtn);
+            });
+            
+            messageDiv.appendChild(questionsDiv);
         }
         
         messagesDiv.appendChild(messageDiv);
@@ -335,15 +385,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const preview = data.message.substring(0, 100) + (data.message.length > 100 ? '...' : '');
                 previewText.textContent = preview;
                 
-                // Add message to chat window
-                addMessage(data.message, true);
+                // Add message to chat window with suggested questions
+                addMessage(data.message, true, null, data.suggested_questions || []);
                 
                 // Show chat window automatically
                 previewCard.style.display = 'flex';
                 chatWindow.style.display = 'flex';
                 isWindowOpen = true;
                 
-                console.log('💬 Chat window opened with initial message');
+                console.log('💬 Chat window opened with initial message and', (data.suggested_questions || []).length, 'suggested questions');
             }
         } catch (error) {
             console.error('❌ Nuri init error:', error);

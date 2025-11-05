@@ -59,14 +59,16 @@ logs/
 
 # Downloaded data files
 *.sql
-*.csv
-bigquery_data.*
+bigquery_data.sql
 
 # Authentication & credentials
 *.json
 !package.json
 !package-lock.json
 !tsconfig.json
+!session_config.json
+!prompt_templates.json
+!bigquery_data.csv
 
 # OS generated files
 .DS_Store

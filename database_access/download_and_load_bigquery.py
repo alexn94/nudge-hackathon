@@ -8,8 +8,9 @@ from google.cloud import bigquery
 import pandas as pd
 from datetime import datetime
 
-# Set credentials path
-CREDENTIALS_PATH = "/home/ubuntu/_dev/_dominik/bc/hackaton/database_access/affable-album-354309-72260dd4d800.json"
+# Set credentials path - use relative path from script location
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CREDENTIALS_PATH = os.path.join(SCRIPT_DIR, "affable-album-354309-72260dd4d800.json")
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = CREDENTIALS_PATH
 
 # BigQuery configuration
@@ -18,8 +19,8 @@ DATASET_ID = "e2e_dev"
 TABLE_ID = "e2e_brokers_log"
 FULL_TABLE_NAME = f"{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}"
 
-# Output SQL file path
-SQL_OUTPUT_FILE = "/home/ubuntu/_dev/_dominik/bc/hackaton/database_access/bigquery_data.sql"
+# Output SQL file path - use relative path
+SQL_OUTPUT_FILE = os.path.join(SCRIPT_DIR, "bigquery_data.sql")
 
 def download_bigquery_data():
     """Download data from BigQuery and save to SQL file"""
@@ -28,10 +29,30 @@ def download_bigquery_data():
     # Initialize BigQuery client
     client = bigquery.Client(project=PROJECT_ID)
     
-    # SQL query to get 10,000 rows
+    # SQL query to get 10,000 rows with user information and broker name
     query = f"""
-    SELECT *
-    FROM `{FULL_TABLE_NAME}`
+    WITH e2e_conversions_users as (
+      SELECT 
+          eb.*,
+          ec.session_id,
+          u.id as user_id,
+          u.name,
+          u.email,
+          b.name as broker_name
+      FROM `{FULL_TABLE_NAME}` eb
+      LEFT JOIN `affable-album-354309.prod_db.e2e_conversions` ec
+          ON eb.e2e_conversions_id = ec.id
+      LEFT JOIN `affable-album-354309.prod_db.sessions` s
+        ON ec.session_id = s.id
+      LEFT JOIN   `affable-album-354309.prod_db.users` u
+        ON s.user_id=u.id
+      LEFT JOIN `affable-album-354309.prod_db.brokers` b
+        ON b.slug=eb.broker_slug
+    )
+    SELECT 
+      *
+    FROM
+      e2e_conversions_users
     LIMIT 10000
     """
     
@@ -120,8 +141,28 @@ def load_from_sql_file():
     # Re-download and save as CSV
     client = bigquery.Client(project=PROJECT_ID)
     query = f"""
-    SELECT *
-    FROM `{FULL_TABLE_NAME}`
+    WITH e2e_conversions_users as (
+      SELECT 
+          eb.*,
+          ec.session_id,
+          u.id as user_id,
+          u.name,
+          u.email,
+          b.name as broker_name
+      FROM `{FULL_TABLE_NAME}` eb
+      LEFT JOIN `affable-album-354309.prod_db.e2e_conversions` ec
+          ON eb.e2e_conversions_id = ec.id
+      LEFT JOIN `affable-album-354309.prod_db.sessions` s
+        ON ec.session_id = s.id
+      LEFT JOIN   `affable-album-354309.prod_db.users` u
+        ON s.user_id=u.id
+      LEFT JOIN `affable-album-354309.prod_db.brokers` b
+        ON b.slug=eb.broker_slug
+    )
+    SELECT 
+      *
+    FROM
+      e2e_conversions_users
     LIMIT 10000
     """
     

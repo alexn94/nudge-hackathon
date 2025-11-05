@@ -1,0 +1,84 @@
+{
+  "use_cases": {
+    "registration_only": {
+      "description": "User registered but no first deposit",
+      "conditions": {
+        "has_registration": true,
+        "has_first_deposit": false,
+        "has_qualify": false
+      },
+      "prompt_with_name": "Say hi to {name}. Mention you noticed they registered with {broker_slug} but haven't deposited yet. Ask if they need help.",
+      "prompt_without_name": "Greet the user warmly. Mention you noticed they registered with {broker_slug} but haven't deposited yet. Offer to help.",
+      "welcome_message_with_name": "Welcome back {name}! 🎉 Great job registering at {broker_name}! What do you need help with to finish setup?",
+      "welcome_message_without_name": "Welcome back! 🎉 Great job registering at {broker_name}! What do you need help with to finish setup?",
+      "suggested_questions": [
+        "💰 How do deposits work at {broker_name}?",
+        "💳 What payment options can I use?",
+        "✅ How does verification work at {broker_name}?"
+      ]
+    },
+    "registration_and_deposit": {
+      "description": "User registered and made first deposit but no qualify",
+      "conditions": {
+        "has_registration": true,
+        "has_first_deposit": true,
+        "has_qualify": false
+      },
+      "prompt_with_name": "Greet {name} and mention they've deposited with {broker_slug} but haven't started trading yet. Encourage them to explore.",
+      "prompt_without_name": "Greet the user and mention they've deposited with {broker_slug} but haven't started trading yet. Encourage them.",
+      "welcome_message_with_name": "Hey {name}! 👋 You've deposited at {broker_name} - ready to explore trading?",
+      "welcome_message_without_name": "Hey there! 👋 You've deposited at {broker_name} - ready to explore trading?",
+      "suggested_questions": [
+        "📊 How do I start my first trade at {broker_name}?",
+        "🎓 What trading resources are available?",
+        "⚙️ How do I set up my trading platform?"
+      ]
+    },
+    "full_journey": {
+      "description": "User completed registration, deposit, and qualify",
+      "conditions": {
+        "has_registration": true,
+        "has_first_deposit": true,
+        "has_qualify": true
+      },
+      "prompt_with_name": "Say hi to {name} and congratulate them on their active trading with {broker_slug}. Offer to help with any questions.",
+      "prompt_without_name": "Greet the user and congratulate them on their active trading with {broker_slug}. Offer assistance.",
+      "welcome_message_with_name": "Great to see you {name}! 🚀 You're rocking it with {broker_name}! How can I help?",
+      "welcome_message_without_name": "Great to see you! 🚀 You're doing great with {broker_name}! How can I help?",
+      "suggested_questions": [
+        "📈 Tell me about {broker_name}'s advanced features",
+        "💡 Any tips for optimizing my trading?",
+        "🔍 How do I compare {broker_name} with other brokers?"
+      ]
+    },
+    "qualify_only": {
+      "description": "User has qualify events but no clear registration",
+      "conditions": {
+        "has_registration": false,
+        "has_qualify": true
+      },
+      "prompt_with_name": "Welcome {name} and acknowledge they're trading with {broker_slug}. Offer to help with any broker questions.",
+      "prompt_without_name": "Welcome the user and acknowledge they're trading with {broker_slug}. Offer assistance.",
+      "welcome_message_with_name": "Hi {name}! 👍 Awesome trading at {broker_name}! What can I help you with?",
+      "welcome_message_without_name": "Hi there! 👍 Awesome trading at {broker_name}! What can I help you with?",
+      "suggested_questions": [
+        "📊 What are {broker_name}'s trading features?",
+        "💰 How are fees structured at {broker_name}?",
+        "🤔 Should I consider other brokers?"
+      ]
+    },
+    "new_visitor": {
+      "description": "No events found for this session",
+      "conditions": {},
+      "prompt_with_name": "Say hi to {name} and offer to help them find the right broker for their trading needs.",
+      "prompt_without_name": "Greet the visitor warmly and offer to help them find the right broker for their needs.",
+      "welcome_message_with_name": "Hi {name}! 👋 Welcome! Looking for the perfect broker?",
+      "welcome_message_without_name": "Hi there! 👋 Welcome! Looking for the perfect broker?",
+      "suggested_questions": [
+        "🔍 What are the best brokers for beginners?",
+        "💰 Which brokers have the lowest fees?",
+        "🌍 Which brokers are available in my country?"
+      ]
+    }
+  }
+}
