@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrokerChooser - Találd meg a legjobb brókert</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">Broker<span>Chooser</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Főoldal</a></li>
+                    <li><a href="#brokers">Brókerek</a></li>
+                    <li><a href="#reviews">Értékelések</a></li>
+                    <li><a href="#guides">Útmutatók</a></li>
+                    <li><a href="#about">Rólunk</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Találd meg a <span class="highlight">tökéletes brókert</span> percek alatt</h1>
+            <p>Szakértői bróker-összehasonlítások, részletes értékelések és adatalapú ajánlások - mindent egy helyen.</p>
+            <a href="#brokers" class="cta-button">Brókerek összehasonlítása</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">Miért válassz minket?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Részletes összehasonlítás</h3>
+                    <p>Több mint 100 bróker díjait, szolgáltatásait és platformjait hasonlítjuk össze átlátható módon.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Szakértői értékelések</h3>
+                    <p>Tapasztalt szakértőink minden brókert alaposan tesztelnek és értékelnek az Ön számára.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Biztonság első</h3>
+                    <p>Csak szabályozott és megbízható brókereket ajánlunk, amelyek megfelelnek a legmagasabb biztonsági előírásoknak.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Ingyenes használat</h3>
+                    <p>Szolgáltatásaink teljesen ingyenesek. Segítünk a legjobb döntést meghozni költségek nélkül.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Friss adatok</h3>
+                    <p>Folyamatosan frissítjük adatbázisunkat, hogy mindig a legaktuálisabb információkkal rendelkezzen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI asszisztens</h3>
+                    <p>Nuclia AI segítségével személyre szabott javaslatokat kaphat és válaszokat minden kérdésére.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brokers Section -->
+    <section class="brokers" id="brokers">
+        <div class="brokers-container">
+            <h2 class="section-title">Népszerű brókerek</h2>
+            <div class="broker-list">
+                <div class="broker-card">
+                    <div class="broker-header">
+                        <div class="broker-logo">IBKR</div>
+                        <div class="broker-info">
+                            <h3>Interactive Brokers</h3>
+                            <div class="broker-rating">⭐ 4.8/5</div>
+                        </div>
+                    </div>
+                    <ul class="broker-features">
+                        <li><span>Min. befektetés:</span> <span>$0</span></li>
+                        <li><span>Kereskedési díj:</span> <span>$0.0005/részvény</span></li>
+                        <li><span>Platformok:</span> <span>TWS, Web, Mobil</span></li>
+                        <li><span>Szabályozás:</span> <span>SEC, FCA, MNB</span></li>
+                    </ul>
+                    <button class="broker-button">Részletek</button>
+                </div>
+
+                <div class="broker-card">
+                    <div class="broker-header">
+                        <div class="broker-logo">XTB</div>
+                        <div class="broker-info">
+                            <h3>XTB</h3>
+                            <div class="broker-rating">⭐ 4.6/5</div>
+                        </div>
+                    </div>
+                    <ul class="broker-features">
+                        <li><span>Min. befektetés:</span> <span>$0</span></li>
+                        <li><span>Kereskedési díj:</span> <span>0% (részvények)</span></li>
+                        <li><span>Platformok:</span> <span>xStation, Mobil</span></li>
+                        <li><span>Szabályozás:</span> <span>FCA, KNF, MNB</span></li>
+                    </ul>
+                    <button class="broker-button">Részletek</button>
+                </div>
+
+                <div class="broker-card">
+                    <div class="broker-header">
+                        <div class="broker-logo">T212</div>
+                        <div class="broker-info">
+                            <h3>Trading 212</h3>
+                            <div class="broker-rating">⭐ 4.5/5</div>
+                        </div>
+                    </div>
+                    <ul class="broker-features">
+                        <li><span>Min. befektetés:</span> <span>€1</span></li>
+                        <li><span>Kereskedési díj:</span> <span>0%</span></li>
+                        <li><span>Platformok:</span> <span>Web, Mobil</span></li>
+                        <li><span>Szabályozás:</span> <span>FCA, CySEC</span></li>
+                    </ul>
+                    <button class="broker-button">Részletek</button>
+                </div>
+
+                <div class="broker-card">
+                    <div class="broker-header">
+                        <div class="broker-logo">SAXO</div>
+                        <div class="broker-info">
+                            <h3>Saxo Bank</h3>
+                            <div class="broker-rating">⭐ 4.7/5</div>
+                        </div>
+                    </div>
+                    <ul class="broker-features">
+                        <li><span>Min. befektetés:</span> <span>$0</span></li>
+                        <li><span>Kereskedési díj:</span> <span>$3 minimum</span></li>
+                        <li><span>Platformok:</span> <span>SaxoTrader, Mobil</span></li>
+                        <li><span>Szabályozás:</span> <span>FSA, FCA, MNB</span></li>
+                    </ul>
+                    <button class="broker-button">Részletek</button>
+                </div>
+
+                <div class="broker-card">
+                    <div class="broker-header">
+                        <div class="broker-logo">eTORO</div>
+                        <div class="broker-info">
+                            <h3>eToro</h3>
+                            <div class="broker-rating">⭐ 4.4/5</div>
+                        </div>
+                    </div>
+                    <ul class="broker-features">
+                        <li><span>Min. befektetés:</span> <span>$50</span></li>
+                        <li><span>Kereskedési díj:</span> <span>0% (részvények)</span></li>
+                        <li><span>Platformok:</span> <span>Web, Mobil</span></li>
+                        <li><span>Szabályozás:</span> <span>FCA, CySEC, ASIC</span></li>
+                    </ul>
+                    <button class="broker-button">Részletek</button>
+                </div>
+
+                <div class="broker-card">
+                    <div class="broker-header">
+                        <div class="broker-logo">RVT</div>
+                        <div class="broker-info">
+                            <h3>Revolut</h3>
+                            <div class="broker-rating">⭐ 4.3/5</div>
+                        </div>
+                    </div>
+                    <ul class="broker-features">
+                        <li><span>Min. befektetés:</span> <span>€1</span></li>
+                        <li><span>Kereskedési díj:</span> <span>€1/hó (3 ingyenes)</span></li>
+                        <li><span>Platformok:</span> <span>Mobil App</span></li>
+                        <li><span>Szabályozás:</span> <span>FCA, Bank of Lithuania</span></li>
+                    </ul>
+                    <button class="broker-button">Részletek</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">Brókerek gyors összehasonlítása</h2>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Bróker</th>
+                            <th>Értékelés</th>
+                            <th>Min. befizetettőke</th>
+                            <th>Kereskedési díj</th>
+                            <th>Platformok</th>
+                            <th>Szabályozás</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Interactive Brokers</strong></td>
+                            <td><span class="rating-badge">4.8/5 ⭐</span></td>
+                            <td>$0</td>
+                            <td>$0.0005/részvény</td>
+                            <td>TWS, Web, Mobil</td>
+                            <td>SEC, FCA, MNB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>XTB</strong></td>
+                            <td><span class="rating-badge">4.6/5 ⭐</span></td>
+                            <td>$0</td>
+                            <td>0% (részvények)</td>
+                            <td>xStation, Mobil</td>
+                            <td>FCA, KNF, MNB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trading 212</strong></td>
+                            <td><span class="rating-badge">4.5/5 ⭐</span></td>
+                            <td>€1</td>
+                            <td>0%</td>
+                            <td>Web, Mobil</td>
+                            <td>FCA, CySEC</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saxo Bank</strong></td>
+                            <td><span class="rating-badge">4.7/5 ⭐</span></td>
+                            <td>$0</td>
+                            <td>$3 minimum</td>
+                            <td>SaxoTrader, Mobil</td>
+                            <td>FSA, FCA, MNB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-section">
+        <div class="features-container">
+            <div class="trust-stats">
+                <div class="trust-stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Értékelt bróker</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Havi látogató</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Éves tapasztalat</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Felhasználói vélemény</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Info Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">Hogyan válassz brókert?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">1️⃣</div>
+                    <h3>Határozd meg céljaidat</h3>
+                    <p>Mit szeretnél kereskedni? Részvények, opciók, forex vagy kriptovaluták? Határozd meg befektetési stratégiádat.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">2️⃣</div>
+                    <h3>Díjak összehasonlítása</h3>
+                    <p>Nézd meg a kereskedési díjakat, számlavezetési költségeket és egyéb rejtett díjakat minden brókernél.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">3️⃣</div>
+                    <h3>Platform kipróbálása</h3>
+                    <p>Használd ki a demo számlákat és teszteld a platformokat, mielőtt valódi pénzzel kezelnél.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>BrokerChooser</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">Rólunk</a></li>
+                        <li><a href="#team">Csapatunk</a></li>
+                        <li><a href="#contact">Kapcsolat</a></li>
+                        <li><a href="#careers">Karrier</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Szolgáltatások</h4>
+                    <ul class="footer-links">
+                        <li><a href="#brokers">Bróker összehasonlítás</a></li>
+                        <li><a href="#reviews">Értékelések</a></li>
+                        <li><a href="#guides">Útmutatók</a></li>
+                        <li><a href="#tools">Eszközök</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Jogi információk</h4>
+                    <ul class="footer-links">
+                        <li><a href="#terms">Felhasználási feltételek</a></li>
+                        <li><a href="#privacy">Adatvédelmi nyilatkozat</a></li>
+                        <li><a href="#cookies">Cookie szabályzat</a></li>
+                        <li><a href="#disclaimer">Jogi nyilatkozat</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Kövess minket</h4>
+                    <ul class="footer-links">
+                        <li><a href="#facebook">Facebook</a></li>
+                        <li><a href="#twitter">Twitter</a></li>
+                        <li><a href="#linkedin">LinkedIn</a></li>
+                        <li><a href="#youtube">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BrokerChooser. Minden jog fenntartva. | Kockázati figyelmeztetés: A befektetés kockázattal jár.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div id="chat-widget">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">N</div>
+                <div class="chat-header-text">
+                    <h3>Nuclia AI</h3>
+                    <p>Online</p>
+                </div>
+            </div>
+            <button id="chat-close" class="chat-close">&times;</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Írj egy üzenetet...">
+            <button id="send-button">Küldés</button>
+        </div>
+    </div>
+
+    <!-- Chat Trigger Button -->
+    <button id="chat-trigger">💬</button>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
