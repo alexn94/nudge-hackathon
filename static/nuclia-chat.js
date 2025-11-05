@@ -138,72 +138,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add citations if available
         if (isBot && citations && citations.length > 0) {
             const citationsDiv = document.createElement('div');
-            citationsDiv.style.display = 'flex';
-            citationsDiv.style.flexDirection = 'column';
-            citationsDiv.style.gap = '0.5rem';
-            citationsDiv.style.marginTop = '0.5rem';
-            citationsDiv.style.fontSize = '0.85rem';
-            
-            const citationsTitle = document.createElement('div');
-            citationsTitle.style.fontWeight = '600';
-            citationsTitle.style.color = '#64748b';
-            citationsTitle.style.fontSize = '0.8rem';
-            citationsTitle.textContent = '📚 Sources:';
-            citationsDiv.appendChild(citationsTitle);
+            citationsDiv.className = 'citations';
             
             citations.forEach((citation, index) => {
                 const citationItem = document.createElement('div');
-                citationItem.style.background = '#f8fafc';
-                citationItem.style.border = '1px solid #e2e8f0';
-                citationItem.style.borderRadius = '0.5rem';
-                citationItem.style.padding = '0.625rem 0.875rem';
-                citationItem.style.cursor = 'pointer';
-                citationItem.style.transition = 'all 200ms';
-                
-                const citationTitle = document.createElement('div');
-                citationTitle.style.fontWeight = '600';
-                citationTitle.style.color = '#1e293b';
-                citationTitle.style.marginBottom = '0.25rem';
-                citationTitle.textContent = `${index + 1}. ${citation.title}`;
-                citationItem.appendChild(citationTitle);
+                citationItem.className = 'citation';
+                citationItem.innerHTML = `<strong>${index + 1}. ${citation.title}</strong>`;
                 
                 // Show first paragraph as preview
                 if (citation.paragraphs && citation.paragraphs.length > 0) {
                     const preview = document.createElement('div');
-                    preview.style.color = '#64748b';
-                    preview.style.fontSize = '0.8rem';
-                    preview.style.overflow = 'hidden';
-                    preview.style.textOverflow = 'ellipsis';
-                    preview.style.display = '-webkit-box';
-                    preview.style.webkitLineClamp = '2';
-                    preview.style.webkitBoxOrient = 'vertical';
+                    preview.style.marginTop = '0.5rem';
+                    preview.style.fontSize = '0.875rem';
                     preview.textContent = citation.paragraphs[0].text;
                     citationItem.appendChild(preview);
-                    
-                    // Add expand functionality
-                    let expanded = false;
-                    citationItem.addEventListener('click', () => {
-                        expanded = !expanded;
-                        if (expanded) {
-                            preview.style.webkitLineClamp = 'unset';
-                            preview.style.display = 'block';
-                            citationItem.style.background = '#eff6ff';
-                        } else {
-                            preview.style.webkitLineClamp = '2';
-                            preview.style.display = '-webkit-box';
-                            citationItem.style.background = '#f8fafc';
-                        }
-                    });
-                    
-                    citationItem.addEventListener('mouseenter', () => {
-                        citationItem.style.borderColor = '#cbd5e1';
-                        citationItem.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
-                    });
-                    
-                    citationItem.addEventListener('mouseleave', () => {
-                        citationItem.style.borderColor = '#e2e8f0';
-                        citationItem.style.boxShadow = 'none';
-                    });
                 }
                 
                 citationsDiv.appendChild(citationItem);
@@ -215,36 +163,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add suggested questions buttons if available
         if (isBot && suggestedQuestions && suggestedQuestions.length > 0) {
             const questionsDiv = document.createElement('div');
-            questionsDiv.style.display = 'flex';
-            questionsDiv.style.flexDirection = 'column';
-            questionsDiv.style.gap = '0.5rem';
-            questionsDiv.style.marginTop = '0.75rem';
-            questionsDiv.style.width = '100%';
+            questionsDiv.className = 'suggested-questions';
             
             suggestedQuestions.forEach((question) => {
                 const questionBtn = document.createElement('button');
+                questionBtn.className = 'suggested-question';
                 questionBtn.textContent = question;
-                questionBtn.style.padding = '0.75rem 1rem';
-                questionBtn.style.background = 'linear-gradient(135deg, #ff6b35 0%, #f97316 100%)';
-                questionBtn.style.color = 'white';
-                questionBtn.style.border = 'none';
-                questionBtn.style.borderRadius = '0.75rem';
-                questionBtn.style.fontSize = '0.9rem';
-                questionBtn.style.fontWeight = '500';
-                questionBtn.style.cursor = 'pointer';
-                questionBtn.style.transition = 'all 200ms';
-                questionBtn.style.textAlign = 'left';
-                questionBtn.style.boxShadow = '0 2px 8px rgba(255,107,53,0.2)';
-                
-                questionBtn.addEventListener('mouseenter', () => {
-                    questionBtn.style.transform = 'translateY(-2px)';
-                    questionBtn.style.boxShadow = '0 4px 12px rgba(255,107,53,0.3)';
-                });
-                
-                questionBtn.addEventListener('mouseleave', () => {
-                    questionBtn.style.transform = 'translateY(0)';
-                    questionBtn.style.boxShadow = '0 2px 8px rgba(255,107,53,0.2)';
-                });
                 
                 questionBtn.addEventListener('click', () => {
                     // Send the question as user message
@@ -270,25 +194,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function showTyping() {
         const typingDiv = document.createElement('div');
         typingDiv.id = 'typing-indicator';
-        typingDiv.style.display = 'flex';
-        typingDiv.style.alignItems = 'center';
-        typingDiv.style.gap = '0.5rem';
-        typingDiv.style.padding = '0.875rem 1.125rem';
-        typingDiv.style.background = 'white';
-        typingDiv.style.borderRadius = '1rem';
-        typingDiv.style.maxWidth = '120px';
-        typingDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
-        typingDiv.innerHTML = `
-            <div style="display: flex; gap: 0.3rem;">
-                <div style="width: 8px; height: 8px; background: #94a3b8; border-radius: 50%; animation: bounce 1.4s ease-in-out 0s infinite;"></div>
-                <div style="width: 8px; height: 8px; background: #94a3b8; border-radius: 50%; animation: bounce 1.4s ease-in-out 0.2s infinite;"></div>
-                <div style="width: 8px; height: 8px; background: #94a3b8; border-radius: 50%; animation: bounce 1.4s ease-in-out 0.4s infinite;"></div>
-            </div>
-        `;
-        
-        const style = document.createElement('style');
-        style.textContent = '@keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }';
-        document.head.appendChild(style);
+        typingDiv.className = 'typing-indicator';
+        typingDiv.innerHTML = '<span></span><span></span><span></span>';
         
         messagesDiv.appendChild(typingDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
