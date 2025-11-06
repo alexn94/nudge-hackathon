@@ -38,9 +38,9 @@ def get_session_data(session_id):
         # Initialize BigQuery client
         client = bigquery.Client(project=PROJECT_ID)
         
-        # SQL query to get session data with user information and broker name
+        # SQL query to get session data with user information, broker name, and HVL lead status
         query = f"""
-        WITH e2e_conversions_users as (
+        WITH e2e_conversions_users AS (
           SELECT 
               eb.*,
               ec.session_id,
@@ -54,15 +54,36 @@ def get_session_data(session_id):
           LEFT JOIN `{PROJECT_ID}.prod_db.sessions` s
             ON ec.session_id = s.id
           LEFT JOIN `{PROJECT_ID}.prod_db.users` u
-            ON s.user_id=u.id
+            ON s.user_id = u.id
           LEFT JOIN `{PROJECT_ID}.prod_db.brokers` b
-            ON b.slug=eb.broker_slug
+            ON b.slug = eb.broker_slug
+        ),
+        hvl_sessions AS (
+          SELECT 
+            session_id,
+            MAX(CASE WHEN answer_id IN (157, 158) THEN 1 ELSE 0 END) as hvl_lead
+          FROM (
+            SELECT 
+              session_id,
+              question_id,
+              answer_id,
+              ROW_NUMBER() OVER (
+                PARTITION BY session_id, question_id 
+                ORDER BY time DESC
+              ) as rn
+            FROM `{PROJECT_ID}.prod_db.fmb_answers_sessions`
+            WHERE question_type = 1
+          )
+          WHERE rn = 1
+          GROUP BY session_id
         )
         SELECT 
-          *
-        FROM
-          e2e_conversions_users
-        WHERE session_id = {session_id}
+          e2e.*,
+          COALESCE(hvl.hvl_lead, 0) as hvl_lead
+        FROM e2e_conversions_users e2e
+        LEFT JOIN hvl_sessions hvl
+          ON e2e.session_id = hvl.session_id
+        WHERE e2e.session_id = {session_id}
         ORDER BY event_timestamp
         """
         

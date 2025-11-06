@@ -86,6 +86,13 @@ class UserJourneyAnalyzer:
         if user_data is None or len(user_data) == 0:
             return 'new_visitor'
         
+        # CHECK HVL LEAD FIRST - HIGHEST PRIORITY!
+        if 'hvl_lead' in user_data.columns:
+            hvl_values = user_data['hvl_lead'].unique()
+            if len(hvl_values) > 0 and hvl_values[0] == 1:
+                logger.info("HVL lead detected! Using hvl_lead use case")
+                return 'hvl_lead'
+        
         # Get event types
         event_names = user_data['event_name'].unique()
         

@@ -1,5 +1,20 @@
 {
   "use_cases": {
+    "hvl_lead": {
+      "description": "High Value Lead - User answered specific questions indicating high value",
+      "conditions": {
+        "hvl_lead": 1
+      },
+      "prompt_with_name": "Greet {name} warmly and congratulate them on registering with {broker_slug}. Offer to help with setup and emphasize the free consultation option.",
+      "prompt_without_name": "Greet the user warmly and congratulate them on registering. Offer to help with setup and emphasize the free consultation option.",
+      "welcome_message_with_name": "Welcome back {name}! Great job registering at {broker_name}! 🎉 What do you need help with to finish setup?",
+      "welcome_message_without_name": "Welcome back! Great job registering at {broker_name}! 🎉 What do you need help with to finish setup?",
+      "suggested_questions": [
+        "💰 Schedule a free session with a BrokerChooser expert",
+        "💳 How do deposits work at {broker_name}?",
+        "🪪 How does verification work at {broker_name}?"
+      ]
+    },
     "registration_only": {
       "description": "User registered but no first deposit",
       "conditions": {
@@ -14,7 +29,7 @@
       "suggested_questions": [
         "💰 How do deposits work at {broker_name}?",
         "💳 What payment options can I use?",
-        "✅ How does verification work at {broker_name}?"
+        "🪪 How does verification work at {broker_name}?"
       ]
     },
     "registration_and_deposit": {
@@ -72,12 +87,12 @@
       "conditions": {},
       "prompt_with_name": "Say hi to {name} and offer to help them find the right broker for their trading needs.",
       "prompt_without_name": "Greet the visitor warmly and offer to help them find the right broker for their needs.",
-      "welcome_message_with_name": "Hi {name}! 👋 Welcome! Looking for the perfect broker?",
+      "welcome_message_with_name": "Welcome back {name}! 👋 Great job registering at {broker_name}! 🎉 What do you need help with to finish setup?",
       "welcome_message_without_name": "Hi there! 👋 Welcome! Looking for the perfect broker?",
       "suggested_questions": [
-        "🔍 What are the best brokers for beginners?",
-        "💰 Which brokers have the lowest fees?",
-        "🌍 Which brokers are available in my country?"
+        "💰 How do deposits work at {broker_name}?",
+        "💳 What payment options can I use?",
+        "🪪 How does verification work at {broker_name}?"
       ]
     }
   }

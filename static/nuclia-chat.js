@@ -39,19 +39,66 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Full Chat Window -->
         <div id="nuclia-chat-window" style="display: none; position: fixed; bottom: 1rem; right: 1rem; width: 400px; max-width: calc(100vw - 2rem); height: 600px; max-height: calc(100vh - 2rem); background: white; border-radius: 1rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); z-index: 10001; flex-direction: column; overflow: hidden; animation: slideIn 0.3s ease-out;">
             <!-- Header -->
-            <div style="background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%); color: white; padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #ff6b35;">
-                <div>
-                    <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.25rem;">Nuri AI</div>
-                    <div style="font-size: 0.85rem; opacity: 0.8; display: flex; align-items: center; gap: 0.5rem;">
-                        <span style="display: inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></span>
-                        Online
-                    </div>
-                </div>
-                <button id="nuclia-minimize" style="background: rgba(255,255,255,0.1); border: none; color: white; font-size: 1.5rem; cursor: pointer; width: 36px; height: 36px; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; transition: all 200ms;">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 20px; height: 20px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15"></path>
+            <div style="background: white; color: #1a1a1a; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <!-- Hamburger Menu -->
+                    <button style="background: none; border: none; color: #6b7280; cursor: pointer; padding: 0.25rem; display: flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 24px; height: 24px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                        </svg>
+                    </button>
+                    <!-- Star Icon (larger) -->
+                    <svg width="32" height="32" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.875 5.1875C10.2238 5.1875 10.5304 5.41873 10.6262 5.75412L11.4733 8.71891C11.844 10.0166 12.8584 11.031 14.1561 11.4017L17.1209 12.2488C17.4563 12.3446 17.6875 12.6512 17.6875 13C17.6875 13.3488 17.4563 13.6554 17.1209 13.7512L14.1561 14.5983C12.8584 14.969 11.844 15.9834 11.4733 17.2811L10.6262 20.2459C10.5304 20.5813 10.2238 20.8125 9.875 20.8125C9.52619 20.8125 9.21964 20.5813 9.12381 20.2459L8.27673 17.2811C7.90596 15.9834 6.89159 14.969 5.5939 14.5983L2.62912 13.7512C2.29373 13.6554 2.0625 13.3488 2.0625 13C2.0625 12.6512 2.29373 12.3446 2.62912 12.2488L5.59391 11.4017C6.89159 11.031 7.90596 10.0166 8.27673 8.7189L9.12381 5.75412C9.21964 5.41873 9.52619 5.1875 9.875 5.1875Z" fill="url(#paint0_linear)"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.25 2.0625C19.6085 2.0625 19.921 2.30648 20.0079 2.65427L20.2776 3.73287C20.5225 4.71256 21.2874 5.4775 22.2671 5.72242L23.3457 5.99208C23.6935 6.07902 23.9375 6.39151 23.9375 6.75C23.9375 7.10849 23.6935 7.42098 23.3457 7.50792L22.2671 7.77758C21.2874 8.0225 20.5225 8.78744 20.2776 9.76712L20.0079 10.8457C19.921 11.1935 19.6085 11.4375 19.25 11.4375C18.8915 11.4375 18.579 11.1935 18.4921 10.8457L18.2224 9.76713C17.9775 8.78744 17.2126 8.0225 16.2329 7.77758L15.1543 7.50792C14.8065 7.42098 14.5625 7.10849 14.5625 6.75C14.5625 6.39151 14.8065 6.07902 15.1543 5.99208L16.2329 5.72242C17.2126 5.4775 17.9775 4.71256 18.2224 3.73288L18.4921 2.65427C18.579 2.30648 18.8915 2.0625 19.25 2.0625Z" fill="url(#paint1_linear)"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.6875 16.125C18.0238 16.125 18.3223 16.3402 18.4287 16.6592L18.8393 17.8912C18.9949 18.3578 19.361 18.7239 19.8275 18.8794L21.0596 19.2901C21.3786 19.3964 21.5938 19.695 21.5938 20.0312C21.5938 20.3675 21.3786 20.6661 21.0596 20.7724L19.8275 21.1831C19.361 21.3386 18.9949 21.7047 18.8393 22.1713L18.4287 23.4033C18.3223 23.7223 18.0238 23.9375 17.6875 23.9375C17.3512 23.9375 17.0527 23.7223 16.9463 23.4033L16.5357 22.1713C16.3801 21.7047 16.014 21.3386 15.5475 21.1831L14.3154 20.7724C13.9964 20.6661 13.7812 20.3675 13.7812 20.0312C13.7812 19.695 13.9964 19.3964 14.3154 19.2901L15.5475 18.8794C16.014 18.7239 16.3801 18.3578 16.5357 17.8912L16.9463 16.6592C17.0527 16.3402 17.3512 16.125 17.6875 16.125Z" fill="url(#paint2_linear)"/>
+                        <defs>
+                            <linearGradient id="paint0_linear" x1="2.0625" y1="23.9375" x2="24.2793" y2="2.0625" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#0928FF"/>
+                                <stop offset="1" stop-color="#FDAD00"/>
+                            </linearGradient>
+                            <linearGradient id="paint1_linear" x1="2.0625" y1="23.9375" x2="24.2793" y2="2.0625" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#0928FF"/>
+                                <stop offset="1" stop-color="#FDAD00"/>
+                            </linearGradient>
+                            <linearGradient id="paint2_linear" x1="2.0625" y1="23.9375" x2="24.2793" y2="2.0625" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#0928FF"/>
+                                <stop offset="1" stop-color="#FDAD00"/>
+                            </linearGradient>
+                        </defs>
                     </svg>
-                </button>
+                    <!-- Nuri AI Text -->
+                    <div style="font-weight: 700; font-size: 1.1rem; color: #1a1a1a;">Nuri AI</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <!-- Open In New Icon -->
+                    <button style="background: none; border: none; color: #6b7280; cursor: pointer; padding: 0.25rem; display: flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 20px; height: 20px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"></path>
+                        </svg>
+                    </button>
+                    <!-- Minimize Button -->
+                    <button id="nuclia-minimize" style="background: none; border: none; color: #6b7280; cursor: pointer; padding: 0.25rem; display: flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 20px; height: 20px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Nuri Plus Banner -->
+            <div style="background: #0928ff; color: white; padding: 0.875rem 1.25rem; display: flex; align-items: center; gap: 0.75rem;">
+                <!-- Small Star Icon -->
+                <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.875 5.1875C10.2238 5.1875 10.5304 5.41873 10.6262 5.75412L11.4733 8.71891C11.844 10.0166 12.8584 11.031 14.1561 11.4017L17.1209 12.2488C17.4563 12.3446 17.6875 12.6512 17.6875 13C17.6875 13.3488 17.4563 13.6554 17.1209 13.7512L14.1561 14.5983C12.8584 14.969 11.844 15.9834 11.4733 17.2811L10.6262 20.2459C10.5304 20.5813 10.2238 20.8125 9.875 20.8125C9.52619 20.8125 9.21964 20.5813 9.12381 20.2459L8.27673 17.2811C7.90596 15.9834 6.89159 14.969 5.5939 14.5983L2.62912 13.7512C2.29373 13.6554 2.0625 13.3488 2.0625 13C2.0625 12.6512 2.29373 12.3446 2.62912 12.2488L5.59391 11.4017C6.89159 11.031 7.90596 10.0166 8.27673 8.7189L9.12381 5.75412C9.21964 5.41873 9.52619 5.1875 9.875 5.1875Z" fill="white"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.25 2.0625C19.6085 2.0625 19.921 2.30648 20.0079 2.65427L20.2776 3.73287C20.5225 4.71256 21.2874 5.4775 22.2671 5.72242L23.3457 5.99208C23.6935 6.07902 23.9375 6.39151 23.9375 6.75C23.9375 7.10849 23.6935 7.42098 23.3457 7.50792L22.2671 7.77758C21.2874 8.0225 20.5225 8.78744 20.2776 9.76712L20.0079 10.8457C19.921 11.1935 19.6085 11.4375 19.25 11.4375C18.8915 11.4375 18.579 11.1935 18.4921 10.8457L18.2224 9.76713C17.9775 8.78744 17.2126 8.0225 16.2329 7.77758L15.1543 7.50792C14.8065 7.42098 14.5625 7.10849 14.5625 6.75C14.5625 6.39151 14.8065 6.07902 15.1543 5.99208L16.2329 5.72242C17.2126 5.4775 17.9775 4.71256 18.2224 3.73288L18.4921 2.65427C18.579 2.30648 18.8915 2.0625 19.25 2.0625Z" fill="white"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.6875 16.125C18.0238 16.125 18.3223 16.3402 18.4287 16.6592L18.8393 17.8912C18.9949 18.3578 19.361 18.7239 19.8275 18.8794L21.0596 19.2901C21.3786 19.3964 21.5938 19.695 21.5938 20.0312C21.5938 20.3675 21.3786 20.6661 21.0596 20.7724L19.8275 21.1831C19.361 21.3386 18.9949 21.7047 18.8393 22.1713L18.4287 23.4033C18.3223 23.7223 18.0238 23.9375 17.6875 23.9375C17.3512 23.9375 17.0527 23.7223 16.9463 23.4033L16.5357 22.1713C16.3801 21.7047 16.014 21.3386 15.5475 21.1831L14.3154 20.7724C13.9964 20.6661 13.7812 20.3675 13.7812 20.0312C13.7812 19.695 13.9964 19.3964 14.3154 19.2901L15.5475 18.8794C16.014 18.7239 16.3801 18.3578 16.5357 17.8912L16.9463 16.6592C17.0527 16.3402 17.3512 16.125 17.6875 16.125Z" fill="white"/>
+                </svg>
+                <!-- Text -->
+                <div style="flex: 1; line-height: 1.3;">
+                    <div style="font-size: 0.8rem; font-weight: 600;">Unlock Nuri Plus - Get Personalized</div>
+                    <div style="font-size: 0.8rem; font-weight: 600;">Insights for FREE!</div>
+                </div>
             </div>
             
             <!-- Messages Area -->
@@ -61,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <!-- Input Area -->
             <div style="padding: 1rem; background: white; border-top: 1px solid #e2e8f0; display: flex; gap: 0.75rem; align-items: end;">
-                <textarea id="nuclia-input" placeholder="Ask me anything..." style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; outline: none; font-size: 0.95rem; font-family: inherit; resize: none; max-height: 120px; transition: all 200ms;" rows="1"></textarea>
-                <button id="nuclia-send" style="padding: 0.75rem 1.25rem; background: #ff6b35; color: white; border: none; border-radius: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 200ms; display: flex; align-items: center; gap: 0.5rem; height: 44px;">
+                <textarea id="nuclia-input" placeholder="Ask me anything..." style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; outline: none; font-size: 1rem; font-family: inherit; resize: none; max-height: 120px; transition: all 200ms;" rows="1"></textarea>
+                <button id="nuclia-send" style="padding: 0.75rem 1.25rem; background: linear-gradient(135deg, rgb(160, 160, 160) 0%, rgb(180, 180, 180) 100%); color: white; border: none; border-radius: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 200ms; display: flex; align-items: center; gap: 0.5rem; height: 44px;">
                     <span>Send</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 18px; height: 18px;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"></path>
@@ -93,33 +140,73 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get elements
     const previewCard = document.getElementById('nuclia-preview-card');
     const chatWindow = document.getElementById('nuclia-chat-window');
+    const openChatBtn = document.getElementById('nuclia-open-chat');
+    const minimizeBtn = document.getElementById('nuclia-minimize');
+    const closePreviewBtn = document.getElementById('nuclia-close-preview');
     const messagesDiv = document.getElementById('nuclia-messages');
     const input = document.getElementById('nuclia-input');
     const sendBtn = document.getElementById('nuclia-send');
     const previewText = document.getElementById('nuclia-preview-text');
-    const openChatBtn = document.getElementById('nuclia-open-chat');
-    const minimizeBtn = document.getElementById('nuclia-minimize');
-    const closePreviewBtn = document.getElementById('nuclia-close-preview');
     
     let isWindowOpen = false;
+    
+    // Simple Markdown to HTML converter
+    function markdownToHtml(text) {
+        if (!text) return '';
+        
+        let html = text;
+        
+        // Headers (###, ##, #)
+        html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+        html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+        html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+        
+        // Bold (**text** or __text__)
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+        
+        // Italic (*text* or _text_)
+        html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+        html = html.replace(/_(.+?)_/g, '<em>$1</em>');
+        
+        // Inline code (`code`)
+        html = html.replace(/`(.+?)`/g, '<code style="background: #f1f5f9; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.9em;">$1</code>');
+        
+        // Links [text](url)
+        html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" style="color: #ff6b35; text-decoration: underline;">$1</a>');
+        
+        // Unordered lists (- item or * item)
+        html = html.replace(/^[\*\-] (.+)$/gim, '<li>$1</li>');
+        html = html.replace(/(<li>.*<\/li>)/s, '<ul style="margin: 0.5rem 0; padding-left: 1.5rem;">$1</ul>');
+        
+        // Ordered lists (1. item)
+        html = html.replace(/^\d+\. (.+)$/gim, '<li>$1</li>');
+        
+        // Line breaks
+        html = html.replace(/\n\n/g, '<br><br>');
+        html = html.replace(/\n/g, '<br>');
+        
+        return html;
+    }
     
     // Add message to chat
     function addMessage(text, isBot = true, citations = null, suggestedQuestions = null) {
         const messageDiv = document.createElement('div');
         messageDiv.style.display = 'flex';
         messageDiv.style.flexDirection = 'column';
-        messageDiv.style.alignItems = isBot ? 'flex-start' : 'flex-end';
+        messageDiv.style.alignItems = isBot ? 'center' : 'flex-end';
         messageDiv.style.animation = 'slideIn 0.3s ease-out';
-        messageDiv.style.gap = '0.5rem';
-        messageDiv.style.maxWidth = '85%';
+        messageDiv.style.gap = '1rem';
+        messageDiv.style.width = '100%';
         
         const bubble = document.createElement('div');
         bubble.style.padding = '0.875rem 1.125rem';
         bubble.style.borderRadius = '1rem';
         bubble.style.wordWrap = 'break-word';
-        bubble.style.fontSize = '0.95rem';
+        bubble.style.fontSize = '1rem';
         bubble.style.lineHeight = '1.5';
         bubble.style.whiteSpace = 'pre-wrap';
+        bubble.style.maxWidth = isBot ? '85%' : 'fit-content';
         
         if (isBot) {
             bubble.style.background = 'white';
@@ -127,12 +214,17 @@ document.addEventListener('DOMContentLoaded', function() {
             bubble.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
             bubble.style.border = '1px solid #e2e8f0';
         } else {
-            bubble.style.background = 'linear-gradient(135deg, #ff6b35 0%, #f97316 100%)';
+            bubble.style.background = 'linear-gradient(135deg, rgb(160, 160, 160) 0%, rgb(180, 180, 180) 100%)';
             bubble.style.color = 'white';
-            bubble.style.boxShadow = '0 4px 12px rgba(255,107,53,0.3)';
+            bubble.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
         }
         
-        bubble.textContent = text;
+        // Use markdown formatting for bot messages, plain text for user
+        if (isBot) {
+            bubble.innerHTML = markdownToHtml(text);
+        } else {
+            bubble.textContent = text;
+        }
         messageDiv.appendChild(bubble);
         
         // Add citations if available
@@ -164,11 +256,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isBot && suggestedQuestions && suggestedQuestions.length > 0) {
             const questionsDiv = document.createElement('div');
             questionsDiv.className = 'suggested-questions';
+            // Add explicit inline styles to ensure gap works
+            questionsDiv.style.display = 'flex';
+            questionsDiv.style.flexDirection = 'column';
+            questionsDiv.style.gap = '1rem';
+            questionsDiv.style.width = '85%';
+            questionsDiv.style.marginTop = '1rem';
+            questionsDiv.style.alignItems = 'flex-start';
+            questionsDiv.style.alignSelf = 'flex-start';
             
             suggestedQuestions.forEach((question) => {
                 const questionBtn = document.createElement('button');
                 questionBtn.className = 'suggested-question';
                 questionBtn.textContent = question;
+                // Add explicit inline styles for font size
+                questionBtn.style.fontSize = '0.875rem';
+                questionBtn.style.padding = '0.625rem 0.875rem';
+                questionBtn.style.border = '1px solid #e5e7eb';
+                questionBtn.style.borderRadius = '0.75rem';
+                questionBtn.style.textAlign = 'left';
+                questionBtn.style.width = '100%';
                 
                 questionBtn.addEventListener('click', () => {
                     // Send the question as user message
